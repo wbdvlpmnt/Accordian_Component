@@ -18,33 +18,35 @@ const faqs = [
 function App() {
   return (
     <div>
-      <Accordion />
+      <Accordion faqs={faqs} />
     </div>
   );
 }
 
-function Card() {
+function Card({ item, index }) {
   return (
     <div className="accordion">
       <div className="item">
-        <h1 className="number">01</h1>
-        <h1 className="title">Where are these chairs assembled?</h1>
+        <h1 className="number">{index + 1}</h1>
+        <h1 className="title">{item.title}</h1>
         <p className="icon">
           <strong>+</strong>
         </p>
         <br />
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium,
-          quaerat temporibus quas dolore provident nisi ut aliquid ratione
-          beatae sequi aspernatur veniam repellendus.
-        </p>
+        <p>{item.text}</p>
       </div>
     </div>
   );
 }
 
-function Accordion() {
-  return <Card />;
+function Accordion({ faqs }) {
+  return (
+    <ul>
+      {faqs.map((item, index) => {
+        return <Card item={item} index={index} key={index} />;
+      })}
+    </ul>
+  );
 }
 
 export default App;
