@@ -23,8 +23,28 @@ function App() {
   );
 }
 
+function Card() {
+  return (
+    <div className="accordion">
+      <div className="item">
+        <h1 className="number">01</h1>
+        <h1 className="title">Where are these chairs assembled?</h1>
+        <p className="icon">
+          <strong>+</strong>
+        </p>
+        <br />
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium,
+          quaerat temporibus quas dolore provident nisi ut aliquid ratione
+          beatae sequi aspernatur veniam repellendus.
+        </p>
+      </div>
+    </div>
+  );
+}
+
 function Accordion() {
-  return <div>TODO</div>;
+  return <Card />;
 }
 
 export default App;
