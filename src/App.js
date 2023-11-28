@@ -21,6 +21,10 @@ function App() {
   const [indexExpanded, setIndexExpanded] = useState(0);
 
   function handleIndexExpansion(index) {
+    if (index === indexExpanded) {
+      setIndexExpanded(null);
+      return;
+    }
     setIndexExpanded(index);
   }
   return (
