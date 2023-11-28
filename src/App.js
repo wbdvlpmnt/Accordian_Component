@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./App.css";
 
 const faqs = [
@@ -16,36 +17,56 @@ const faqs = [
 ];
 
 function App() {
+  const [indexExpanded, setIndexExpanded] = useState(0);
+
+  function handleIndexExpansion(index) {
+    console.log(index);
+    setIndexExpanded(index);
+  }
   return (
     <div>
-      <Accordion faqs={faqs} />
+      <Accordion
+        faqs={faqs}
+        indexExpanded={indexExpanded}
+        onExpand={handleIndexExpansion}
+      />
     </div>
   );
 }
 
-function Card({ item, index }) {
+function Card({ item, index, indexExpanded, onExpand }) {
   return (
-    <div className="accordion">
+    <div className="">
       <div className="item">
         <h1 className="number">{index + 1}</h1>
         <h1 className="title">{item.title}</h1>
-        <p className="icon">
+        <span className="icon" onClick={() => onExpand(index)}>
           <strong>+</strong>
-        </p>
+        </span>
         <br />
-        <p>{item.text}</p>
+        {indexExpanded === index ? <p>{item.text}</p> : <></>}
       </div>
     </div>
   );
 }
 
-function Accordion({ faqs }) {
+function Accordion({ faqs, indexExpanded, onExpand }) {
   return (
-    <ul>
-      {faqs.map((item, index) => {
-        return <Card item={item} index={index} key={index} />;
-      })}
-    </ul>
+    <div className="accordion content-box">
+      <ul>
+        {faqs.map((item, index) => {
+          return (
+            <Card
+              item={item}
+              index={index}
+              key={index}
+              indexExpanded={indexExpanded}
+              onExpand={onExpand}
+            />
+          );
+        })}
+      </ul>
+    </div>
   );
 }
 
