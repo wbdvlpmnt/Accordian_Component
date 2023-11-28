@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import Accordion from "./Accordion";
 
 const faqs = [
   {
@@ -29,44 +30,6 @@ function App() {
         indexExpanded={indexExpanded}
         onExpand={handleIndexExpansion}
       />
-    </div>
-  );
-}
-
-function Card({ item, index, indexExpanded, onExpand }) {
-  const isExpanded = index === indexExpanded;
-  const cardNumber = index + 1;
-  return (
-    <div className={isExpanded ? "item open" : "item"}>
-      <h1 className="number">
-        {cardNumber < 10 ? "0" + cardNumber : cardNumber}
-      </h1>
-      <h1 className="title">{item.title}</h1>
-      <span className="icon" onClick={() => onExpand(index)}>
-        <strong>+</strong>
-      </span>
-      <br />
-      {isExpanded ? <p>{item.text}</p> : <></>}
-    </div>
-  );
-}
-
-function Accordion({ faqs, indexExpanded, onExpand }) {
-  return (
-    <div className="accordion content-box">
-      <ul>
-        {faqs.map((item, index) => {
-          return (
-            <Card
-              item={item}
-              index={index}
-              key={index}
-              indexExpanded={indexExpanded}
-              onExpand={onExpand}
-            />
-          );
-        })}
-      </ul>
     </div>
   );
 }
