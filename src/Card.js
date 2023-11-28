@@ -8,7 +8,7 @@ export default function Card({ item, index, indexExpanded, onExpand }) {
       </h1>
       <h1 className="title">{item.title}</h1>
       <span className="icon" onClick={() => onExpand(index)}>
-        <strong>+</strong>
+        {isExpanded ? <strong>-</strong> : <strong>+</strong>}
       </span>
       <br />
       {isExpanded ? <p>{item.text}</p> : <></>}
